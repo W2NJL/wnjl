@@ -1,0 +1,19 @@
+
+.nav{
+    background-color: rgb(113, 113, 250);
+}
+.nav ul{
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0 0 10px grey;
+}
+
+.nav ul a{
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
