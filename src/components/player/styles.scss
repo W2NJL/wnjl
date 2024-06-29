@@ -1,28 +1,30 @@
 .player {
-    background: #333;
+    background: #222;
     color: #fff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 600px; /* Set a max width */
+    width: 90%; /* Use 90% width for responsiveness */
+    margin: 10px auto; /* Center the player */
   }
   
   .player-controls {
     display: flex;
-    align-items: center;
-    gap: 15px; /* Increased gap for better spacing */
-    margin-top: 10px;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
   }
   
   .player-button {
     background: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
   }
   
   .player-button:hover {
@@ -30,11 +32,18 @@
   }
   
   .volume-slider {
-    width: 150px;
-    margin-top: 10px;
+    width: 80%;
+    margin: 10px 0;
   }
   
-  .current-song {
-    margin-top: 20px;
-    font-size: 18px;
+  @media (max-width: 600px) {
+    .player-controls {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .player-button {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
   }

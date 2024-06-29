@@ -1,27 +1,31 @@
 .last-20-played {
     background: #222;
     color: #fff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 600px; /* Set a max width */
+    width: 90%; /* Use 90% width for responsiveness */
+    margin: 10px auto; /* Center the component */
   }
   
-  .last-20-played h2 {
+  h2 {
     margin-bottom: 10px;
     text-align: center;
+    font-size: 1.5rem;
   }
   
-  .last-20-played ul {
+  ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   
-  .last-20-played li {
+  li {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 8px;
     border-bottom: 1px solid #444;
+    font-size: 1rem;
   }
   
   .header {
@@ -29,17 +33,29 @@
     background-color: #333;
   }
   
-  .song-time {
-    width: 20%;
+  .song-time, .song-artist, .song-title {
+    flex: 1;
     text-align: left;
+    padding: 0 5px;
   }
   
   .song-artist {
-    width: 40%;
     text-align: center;
   }
   
   .song-title {
-    width: 40%;
     text-align: right;
+  }
+  
+  @media (max-width: 600px) {
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+  
+    .song-time, .song-artist, .song-title {
+      text-align: left;
+      padding: 2px 0;
+    }
   }
