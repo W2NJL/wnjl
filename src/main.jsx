@@ -6,6 +6,7 @@ import 'virtual:windi.css'
 import { BrowserRouter, RouterProvider, createBrowserRouter, createHashRouter, json } from 'react-router-dom'
 import { publicRoutes } from './routes/public-routes.js'
 import { adminRoutes } from './routes/admin-routes.js'
+import { GlobalContext, GlobalProvider } from './store/GlobalStore.jsx'
 
 
 
@@ -18,10 +19,16 @@ const router = createHashRouter([
 
 ])
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ //// <React.StrictMode>
+    <GlobalProvider>
     <RouterProvider router={router}/>
+    </GlobalProvider>
+ 
+   
   
    
-  </React.StrictMode>,
+ // </React.StrictMode>,
 )

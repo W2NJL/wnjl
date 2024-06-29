@@ -1,0 +1,16 @@
+.roundButton{
+
+    background-color: rgb(108, 205, 254);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    color: white;
+    box-shadow: 0 0 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &:hover{
+        background-color: rgb(95, 182, 225);
+        box-shadow: 0 0 3px;
+    }
+}

@@ -55,7 +55,7 @@ function renderNavItems(){
 
   return (
    <nav className={css.nav}>
-    <button onClick={onClick}>Shit</button>
+    <button onClick={onClick}>WNJL.com Radio</button>
     <ul>
     {renderNavItems()}
     </ul>

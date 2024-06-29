@@ -1,0 +1,26 @@
+.tooltip{
+
+    position: relative;
+
+    &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        width: 150px;
+        left: 0;
+        top: 2rem;
+        background-color: rgba(76, 76, 76, 0.85);
+        color: white;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        opacity: 0;
+
+        transition-duration: 0.25s;
+        transition-property: opacity;
+    }
+
+    &:hover::after{
+        opacity: 1;
+    }
+}

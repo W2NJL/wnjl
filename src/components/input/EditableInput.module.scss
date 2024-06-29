@@ -1,0 +1,18 @@
+.wrapper{
+
+width: 100px;
+
+.input{
+
+}
+
+.button{
+    display: none;
+    position: absolute;
+    right: 0;
+}
+&:hover>.button{
+    display: inline;
+}
+
+}

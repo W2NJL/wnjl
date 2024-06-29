@@ -1,0 +1,45 @@
+.last-20-played {
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .last-20-played h2 {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .last-20-played ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .last-20-played li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #444;
+  }
+  
+  .header {
+    font-weight: bold;
+    background-color: #333;
+  }
+  
+  .song-time {
+    width: 20%;
+    text-align: left;
+  }
+  
+  .song-artist {
+    width: 40%;
+    text-align: center;
+  }
+  
+  .song-title {
+    width: 40%;
+    text-align: right;
+  }
