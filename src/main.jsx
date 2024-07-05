@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import 'virtual:windi.css'
 import { BrowserRouter, RouterProvider, createBrowserRouter, createHashRouter, json } from 'react-router-dom'
-import { publicRoutes } from './routes/public-routes.js'
+import { publicRoutes } from './routes/public-routes.jsx'
 import { adminRoutes } from './routes/admin-routes.js'
 import { GlobalContext, GlobalProvider } from './store/GlobalStore.jsx'
 

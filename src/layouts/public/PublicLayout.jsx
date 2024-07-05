@@ -1,21 +1,22 @@
-import React from 'react'
-import Navbar from './navbar/Navbar'
-import { useLocation } from 'react-router'
+// src/layouts/public/PublicLayout.jsx
+
+import React from 'react';
+import Navbar from './navbar/Navbar';
+import Player from '../../components/player/Player';
 
 export default function PublicLayout(props) {
-
-    const location = useLocation();
-
-    console.log(location);
   return (
     <div>
-        {/*navbar*/}
-        <Navbar/>
+      {/* Navbar */}
+      <Navbar />
       
-        {/*body*/}
-        {props.children}
+      {/* Player */}
+      <Player />
+      
+      {/* Body */}
+      {props.children}
 
-        {/*footer*/}
+      {/* Footer */}
     </div>
-  )
+  );
 }

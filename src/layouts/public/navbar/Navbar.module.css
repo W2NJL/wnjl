@@ -1,19 +1,82 @@
-
-.nav{
-    background-color: rgb(113, 113, 250);
+.nav {
+    background-color: #2b2d42; /* Dark navy blue background */
+    border-bottom: 3px solid #ef233c; /* Contrasting bottom border */
+    padding: 10px 20px; /* Adding padding */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
 }
-.nav ul{
-    margin-top: 0;
-    margin-bottom: 0;
+
+.logo {
+    height: 50px; /* Adjust height */
+    margin-right: 20px;
+}
+
+button {
+    background-color: #ef233c; /* Matching button color with the border */
+    color: #f8f9fa !important; /* Off-white text for button with !important to ensure it applies */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold; /* Bold button text */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    margin-left: 20px;
+    border-radius: 4px; /* Rounded corners */
+}
+
+button:hover {
+    background-color: #d90429; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.nav ul {
+    margin: 0;
     display: flex;
     list-style: none;
-    padding: 10px 0;
-    box-shadow: 0 0 10px grey;
+    padding: 0;
+    margin-left: auto; /* Align items to the right */
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
 }
 
-.nav ul a{
-    color: white;
+.nav ul li {
+    margin-left: 20px; /* Spacing between nav items */
+}
+
+.nav ul a {
+    color: #f8f9fa; /* Off-white text color */
     text-decoration: none;
-    margin-left: 5px;
-    margin-right: 5px;
+    font-weight: bold;
+    padding: 10px 15px; /* Padding for clickable area */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.nav ul a:hover {
+    color: #fff; /* Lighter text color on hover */
+    background-color: #ef233c; /* Background color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav {
+        justify-content: center; /* Center items on small screens */
+    }
+
+    .nav ul {
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: center; /* Center nav items */
+        width: 100%; /* Full width for better alignment */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .nav ul li {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add margin on top for spacing */
+    }
+
+    button {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add margin on top for spacing */
+    }
 }

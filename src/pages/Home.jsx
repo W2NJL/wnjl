@@ -1,53 +1,26 @@
-import React, { useContext, useState } from 'react'
-import PublicLayout from '../layouts/public/PublicLayout'
-import { useNavigate } from 'react-router'
+// src/pages/Home.jsx
+
+import React, { useState } from 'react';
 import css from './Home.module.scss';
-
-import { ACTIONS, GlobalContext, useGlobalContext } from '../store/GlobalStore';
-import Player from '../components/player/Player';
 import Last20Played from '../components/now-playing/NowPlaying';
-
+import { useGlobalContext, ACTIONS } from '../store/GlobalStore';
 
 export default function Home(props) {
+  const globalStore = useGlobalContext();
 
-    console.log({css});
+  function onClick() {
+    globalStore.dispatch({
+      type: ACTIONS.UPDATE_HEY,
+      payload: 'patriot way'
+    });
+  }
 
-    const globalStore = useGlobalContext();
+  const [checked, setChecked] = useState(true);
 
-    console.log({globalStore});
-
-    const navigate = useNavigate();
-
-
-    function onClick(){
-
-        globalStore.dispatch({
-            type: ACTIONS.UPDATE_HEY,
-            payload: 'patriot way'
-        });
-
-        console.log(globalStore.state);
-
-        // navigate(
-        //     '/contact',{
-        //         state:{
-        //             heyya: 'outkast',
-        //         }
-        //     }
-        // )
-
-
-    }
-
-
-    const [checked, setChecked ]= useState(true);
   return (
-  <PublicLayout>
-
-<Player></Player>
-<Last20Played /> {/* Include the Last 20 Played component */}
-
-
-  </PublicLayout>
-  )
+    <div>
+      {/* Content specific to Home page */}
+      <Last20Played />
+    </div>
+  );
 }

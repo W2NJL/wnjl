@@ -9,13 +9,10 @@ import { BrowserRouter, Route, Routes, useRoutes } from 'react-router-dom';
 
 function App() {
 
-  const routes = useRoutes([
 
-
-])
 
   //let abc = "123"; 
-  const [abc, setAbc] = useState("123");
+
 
   // setTimeout(() => {
   //   // console.log('settimeout');
@@ -31,13 +28,13 @@ function App() {
 console.log('Outkast');
   }
 
-  const paragraph = <p>{abc}</p>
+
 
   return (
    
       <div>
        
-        {routes}
+       
 {/*<Routes>
 
  <Route path="/" element={<Home/>} />

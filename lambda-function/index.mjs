@@ -1,6 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
+import serverless from 'serverless-http';
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes
@@ -13,10 +14,7 @@ app.get('/currentsong', async (req, res) => {
   } catch (error) {
     res.status(500).send('Error fetching current song');
   }
-});curl -v -X OPTIONS https://wrh8st2338.execute-api.us-east-2.amazonaws.com/API2/currentsong \
--H "Origin: https://www.wnjl.com" \
--H "Access-Control-Request-Method: GET" \
--H "Access-Control-Request-Headers: Content-Type
+});
 
 app.get('/last20played', async (req, res) => {
   try {
@@ -28,7 +26,6 @@ app.get('/last20played', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server proxy running on port ${PORT}`);
-});
+const handler = serverless(app);
+
+export { handler };
