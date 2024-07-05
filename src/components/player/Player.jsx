@@ -1,30 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { useAudioPlayer } from 'react-use-audio-player';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import './styles.scss';
 import wnjlLogo from '../../assets/wnjl.png';
 
+// Function to detect if the OS is iOS
+const isIOS = () => {
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+};
+
 function Player() {
-  const { load, togglePlayPause, playing, volume, setVolume } = useAudioPlayer();
+  const audioRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
   const [currentSong, setCurrentSong] = useState('Loading...');
   const [isMuted, setIsMuted] = useState(false);
-  const [previousVolume, setPreviousVolume] = useState(0.5); // Default to halfway
   const [albumArt, setAlbumArt] = useState(null);
-  const [sliderVolume, setSliderVolume] = useState(0.5); // Initial slider volume
+  const [isIOSDevice, setIsIOSDevice] = useState(false);
 
   useEffect(() => {
-    load("http://94.130.162.80:8020/listen.pls?sid=1", {
-      html5: true,
-      format: "mp3",
-      autoplay: false,
-      volume: 0.5 // Set the initial volume here
-    });
-  }, [load]);
+    setIsIOSDevice(isIOS());
+
+    const audio = new Audio("http://94.130.162.80:8020/stream");
+    audioRef.current = audio;
+
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+
+    return () => {
+      audio.removeEventListener('play', () => setPlaying(true));
+      audio.removeEventListener('pause', () => setPlaying(false));
+      audio.pause();
+    };
+  }, []);
 
   useEffect(() => {
-    setVolume(0.5); // Ensure the volume is set to 0.5 after loading
-    setSliderVolume(0.5); // Sync slider with initial volume
-  }, [setVolume]);
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+      if (isMuted) {
+        audioRef.current.muted = true;
+      } else {
+        audioRef.current.muted = false;
+      }
+    }
+  }, [volume, isMuted]);
 
   useEffect(() => {
     const fetchCurrentSong = () => {
@@ -65,24 +86,22 @@ function Player() {
     }
   };
 
-  const handleMute = () => {
-    if (isMuted) {
-      setVolume(previousVolume); // Restore previous volume
+  const togglePlayPause = () => {
+    const audio = audioRef.current;
+    if (playing) {
+      audio.pause();
     } else {
-      setPreviousVolume(volume); // Save current volume
-      setVolume(0); // Mute
+      audio.play();
     }
-    setIsMuted(!isMuted);
+  };
+
+  const handleMute = () => {
+    setIsMuted(prevIsMuted => !prevIsMuted);
   };
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    setSliderVolume(newVolume);
-    setIsMuted(newVolume === 0);
-    if (!isMuted) {
-      setPreviousVolume(newVolume);
-    }
   };
 
   return (
@@ -91,19 +110,24 @@ function Player() {
         <button className="player-button" onClick={togglePlayPause}>
           {playing ? "Pause" : "Play"}
         </button>
-        <button className="player-button" onClick={handleMute}>
-          {isMuted ? "Unmute" : "Mute"}
-        </button>
+        {!isIOSDevice && (
+          <button className="player-button" onClick={handleMute}>
+            {isMuted ? "Unmute" : "Mute"}
+          </button>
+        )}
       </div>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={sliderVolume}
-        onChange={handleVolumeChange}
-        className="volume-slider"
-      />
+      {!isIOSDevice && (
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={isMuted ? 0 : volume}
+          onChange={handleVolumeChange}
+          onInput={handleVolumeChange} // Ensure immediate response on input
+          className="volume-slider"
+        />
+      )}
       <div className="current-song">
         Currently Playing: {currentSong}
       </div>
