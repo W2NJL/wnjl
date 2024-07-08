@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './styles.scss';
 import wnjlLogo from '../../assets/wnjl.png';
@@ -22,34 +22,24 @@ function Player() {
 
   useEffect(() => {
     setIsIOSDevice(isIOS());
+    const audio = audioRef.current;
+    audio.volume = volume;
 
-    const audio = new Audio("http://94.130.162.80:8020/stream");
-    audioRef.current = audio;
+    const handlePlay = () => setPlaying(true);
+    const handlePause = () => setPlaying(false);
 
-    audio.addEventListener('play', () => setPlaying(true));
-    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
 
     return () => {
-      audio.removeEventListener('play', () => setPlaying(true));
-      audio.removeEventListener('pause', () => setPlaying(false));
-      audio.pause();
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
     };
-  }, []);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-      if (isMuted) {
-        audioRef.current.muted = true;
-      } else {
-        audioRef.current.muted = false;
-      }
-    }
-  }, [volume, isMuted]);
+  }, [volume]);
 
   useEffect(() => {
     const fetchCurrentSong = () => {
-      fetch('https://ofklysyh6c.execute-api.us-east-2.amazonaws.com/prod/currentsong')
+      fetch('https://m1nt0kils7.execute-api.us-east-2.amazonaws.com/prod/currentsong')
         .then(response => response.text())
         .then(data => {
           setCurrentSong(data);
@@ -70,7 +60,7 @@ function Player() {
 
     try {
       const response = await axios.get(
-        `https://ofklysyh6c.execute-api.us-east-2.amazonaws.com/prod/LastFmApi?artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}`
+        `https://m1nt0kils7.execute-api.us-east-2.amazonaws.com/prod/LastFmApi?artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}`
       );
 
       if (response.data.track && response.data.track.album && response.data.track.album.image) {
@@ -96,12 +86,26 @@ function Player() {
   };
 
   const handleMute = () => {
-    setIsMuted(prevIsMuted => !prevIsMuted);
+    const audio = audioRef.current;
+    if (isMuted) {
+      audio.muted = false;
+      setIsMuted(false);
+    } else {
+      audio.muted = true;
+      setIsMuted(true);
+    }
   };
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
+    const audio = audioRef.current;
     setVolume(newVolume);
+    audio.volume = newVolume;
+    if (newVolume === 0) {
+      setIsMuted(true);
+    } else {
+      setIsMuted(false);
+    }
   };
 
   return (
@@ -122,12 +126,20 @@ function Player() {
           min="0"
           max="1"
           step="0.01"
-          value={isMuted ? 0 : volume}
+          value={volume}
           onChange={handleVolumeChange}
-          onInput={handleVolumeChange} // Ensure immediate response on input
           className="volume-slider"
         />
       )}
+      <audio
+        ref={audioRef}
+        controls
+        crossorigin="anonymous"
+        style={{ display: 'none' }}
+      >
+        <source src="https://d4cbg8stml4t6.cloudfront.net/stream" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
       <div className="current-song">
         Currently Playing: {currentSong}
       </div>

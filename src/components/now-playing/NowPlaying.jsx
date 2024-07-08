@@ -7,7 +7,7 @@ function Last20Played() {
 
   const fetchSongs = async () => {
     try {
-      const response = await fetch('https://ofklysyh6c.execute-api.us-east-2.amazonaws.com/prod/last20played');
+      const response = await fetch('https://m1nt0kils7.execute-api.us-east-2.amazonaws.com/prod/last20played');
       const text = await response.text();
 
       const parser = new DOMParser();
