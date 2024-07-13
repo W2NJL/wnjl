@@ -8,6 +8,7 @@ import Error from '../pages/Error';
 import Timer from '../pages/Timer';
 import Start from '../pages/timer/Start';
 import PublicLayout from '../layouts/public/PublicLayout';
+import Schedule from '../schedule/Schedule';
 
 const WrappedPublicLayout = () => (
   <PublicLayout>
@@ -24,6 +25,7 @@ export const publicRoutes = [
       { path: 'about', element: <About /> },
       { path: 'timer', element: <Timer /> },
       { path: 'start', element: <Start /> },
+      { path: 'schedule', element: <Schedule /> },
     ],
     errorElement: <Error />,
   },

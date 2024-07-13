@@ -10,6 +10,10 @@ export default function Navbar() {
             to: '/'
         },
         {
+            title: 'Schedule',
+            to: '/schedule'
+        },
+        {
             title: 'About',
             to: '/about'
         },
