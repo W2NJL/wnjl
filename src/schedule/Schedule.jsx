@@ -14,6 +14,7 @@ const Schedule = (props) => {
     { day: 'Friday', time: '8:00 PM - 9:00 PM', show: 'Cool Jazz Weekly Extra with Mike Regensburger' },
     { day: 'Saturday', time: 'All day', show: 'Smooth Jazz Programming' },
     { day: 'Saturday', time: '10:00 AM - 12:00 PM', show: 'The Smooth Jazz Top 20 Countdown with Allen Kepler' },
+    { day: 'Saturday', time: '12:00 PM - 2:00 PM', show: 'The Andrew Neu Show' },
     { day: 'Sunday', time: 'All day', show: 'Smooth Jazz Programming' },
   ];
 
