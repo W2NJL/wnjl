@@ -15,7 +15,9 @@ const Schedule = (props) => {
     { day: 'Saturday', time: 'All day', show: 'Smooth Jazz Programming' },
     { day: 'Saturday', time: '10:00 AM - 12:00 PM', show: 'The Smooth Jazz Top 20 Countdown with Allen Kepler' },
     { day: 'Saturday', time: '12:00 PM - 2:00 PM', show: 'The Andrew Neu Show' },
+    { day: 'Saturday', time: '7:00 PM - 12:00 AM', show: 'JazzTrax with Art Good' },
     { day: 'Sunday', time: 'All day', show: 'Smooth Jazz Programming' },
+    { day: 'Sunday', time: '7:00 PM - 9:00 PM', show: 'The Dave Koz Radio Show' },
   ];
 
   return (
