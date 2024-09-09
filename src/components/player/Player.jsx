@@ -18,6 +18,7 @@ function Player() {
   const [isMuted, setIsMuted] = useState(false);
   const [albumArt, setAlbumArt] = useState(null);
   const [isIOSDevice, setIsIOSDevice] = useState(false);
+  const [previousSong, setPreviousSong] = useState('');
 
   useEffect(() => {
     setIsIOSDevice(isIOS());
@@ -37,22 +38,30 @@ function Player() {
   }, [volume]);
 
   useEffect(() => {
+    let interval;
+
     const fetchCurrentSong = () => {
       fetch('https://m1nt0kils7.execute-api.us-east-2.amazonaws.com/prod/currentsong')
         .then(response => response.text())
         .then(data => {
-          setCurrentSong(data);
-          fetchAlbumArt(data);
-          updateMediaSession(data);  // Update media session with new song info
+          if (data !== previousSong) {
+            console.log('Four 80');
+            setCurrentSong(data);
+            setPreviousSong(data);
+            fetchAlbumArt(data);
+            updateMediaSession(data);
+          }
         })
         .catch(() => setCurrentSong('Error fetching song info'));
     };
 
-    fetchCurrentSong();
-    const interval = setInterval(fetchCurrentSong, 10000);
+
+      fetchCurrentSong(); // Fetch immediately when playing starts
+      interval = setInterval(fetchCurrentSong, 10000); // Poll every 30 seconds
+    
 
     return () => clearInterval(interval);
-  }, []);
+  }, [playing, previousSong]);
 
   const fetchAlbumArt = async (songInfo) => {
     const [artist, title] = songInfo.split(' - ');
@@ -68,11 +77,11 @@ function Player() {
         const largeImage = albumImages.find(img => img.size === 'large') || albumImages[0];
         setAlbumArt(largeImage['#text']);
       } else {
-        setAlbumArt(wnjlLogo); // Use WNJL logo if no album art is found
+        setAlbumArt(wnjlLogo);
       }
     } catch (error) {
       console.error('Error fetching album art:', error);
-      setAlbumArt(wnjlLogo); // Use WNJL logo on error
+      setAlbumArt(wnjlLogo);
     }
   };
 
@@ -84,20 +93,8 @@ function Player() {
         artist: artist || 'Unknown Artist',
         album: 'WNJL Radio',
         artwork: [
-          { src: albumArt || wnjlLogo, sizes: '512x512', type: 'image/png' },
+          { src: albumArt || wnjlLogo, sizes: '512x512', type: 'image/png' }
         ]
-      });
-
-      // Optionally, set play/pause action handlers
-      navigator.mediaSession.setActionHandler('play', () => {
-        const audio = audioRef.current;
-        audio.play();
-        setPlaying(true);
-      });
-      navigator.mediaSession.setActionHandler('pause', () => {
-        const audio = audioRef.current;
-        audio.pause();
-        setPlaying(false);
       });
     }
   };
