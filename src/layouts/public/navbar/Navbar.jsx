@@ -27,24 +27,7 @@ export default function Navbar() {
         ));
     }
 
-    const [counterA, setCounterA] = useState(0);
-    const [counterB, setCounterB] = useState(0);
-
-    useEffect(() => {
-        console.log(' Quincy');
-    });
-
-    useEffect(() => {
-        console.log('Just Once Quincy');
-    }, []);
-
-    useEffect(() => {
-        console.log('Counter A');
-    }, [counterA]);
-
-    function onClick() {
-        setCounterA(counterA + 1);
-    }
+    
 
     return (
         <nav className={css.nav}>
