@@ -1,0 +1,109 @@
+.oasis-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Default for light mode */
+  }
+  
+  .oasis-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #0073e6;
+  }
+  
+  .oasis-container p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  .episode {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .episode h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .embed-container {
+    margin-bottom: 20px;
+  }
+  
+  .episode h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .episode ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .episode li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; /* Stack artist and song vertically */
+  }
+  
+  .episode li:last-child {
+    border-bottom: none;
+  }
+  
+  .episode li strong {
+    font-size: 1.1rem;
+    color: #0073e6; /* Accent color */
+  }
+  
+  .episode li span {
+    font-size: 1rem;
+    color: #333; /* Default color for light mode */
+    margin-top: 5px;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .oasis-container {
+      color: #f3f4f6;
+      background-color: #1a1a1a;
+    }
+  
+    .episode {
+      background-color: #2a2a2a;
+      border: 1px solid #555;
+    }
+  
+    .episode h2,
+    .episode h3 {
+      color: #ffffff;
+    }
+  
+    .episode li {
+      border-bottom: 1px solid #555;
+    }
+  
+    .episode li strong {
+      color: #0073e6;
+    }
+  
+    .episode li span {
+      color: #f3f4f6; /* Bright color for dark mode */
+    }
+  
+    .oasis-container h1 {
+      color: #ffffff;
+    }
+  
+    .oasis-container p {
+      color: #cccccc;
+    }
+  }

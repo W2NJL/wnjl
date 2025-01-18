@@ -7,6 +7,7 @@ const Schedule = (props) => {
     { day: 'Monday', time: 'All day', show: 'Smooth Jazz Programming' },
     { day: 'Tuesday', time: 'All day', show: 'Smooth Jazz Programming' },
     { day: 'Wednesday', time: 'All day', show: 'Smooth Jazz Programming' },
+    { day: 'Wednesday', time: '7:00 PM - 9:00 PM', show: 'The Smooth Jazz Kitchen with Bruce Buege' },
     { day: 'Thursday', time: 'All day', show: 'Smooth Jazz Programming' },
     { day: 'Thursday', time: '7:00 PM - 8:30 PM', show: 'Lancaster Avenue Oasis hosted by Nick Langan' },
     { day: 'Friday', time: 'All day', show: 'Smooth Jazz Programming' },

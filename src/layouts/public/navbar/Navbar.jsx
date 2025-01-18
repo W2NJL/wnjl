@@ -17,6 +17,7 @@ export default function Navbar() {
             title: 'About',
             to: '/about'
         },
+        { title: 'Lancaster Ave. Oasis', to: '/oasis' },
     ];
 
     function renderNavItems() {
@@ -32,7 +33,7 @@ export default function Navbar() {
     return (
         <nav className={css.nav}>
             <img src={logo} alt="WNJL Logo" className={css.logo} />
-            <button onClick={onClick}>WNJL.com Radio</button>
+            <button>WNJL.com Radio</button>
             <ul>
                 {renderNavItems()}
             </ul>

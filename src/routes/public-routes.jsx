@@ -9,6 +9,7 @@ import Timer from '../pages/Timer';
 import Start from '../pages/timer/Start';
 import PublicLayout from '../layouts/public/PublicLayout';
 import Schedule from '../schedule/Schedule';
+import LancasterAveOasis from '../pages/LancasterAveOasis';
 
 const WrappedPublicLayout = () => (
   <PublicLayout>
@@ -26,6 +27,8 @@ export const publicRoutes = [
       { path: 'timer', element: <Timer /> },
       { path: 'start', element: <Start /> },
       { path: 'schedule', element: <Schedule /> },
+      { path: 'oasis', element: <LancasterAveOasis/>},
+     
     ],
     errorElement: <Error />,
   },
